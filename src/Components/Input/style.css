@@ -1,0 +1,27 @@
+.eye {
+  color: #44b26f;
+  position: fixed;
+  right: 34rem;
+  font-size: 1.5em;
+}
+
+.input {
+  border: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  padding-left: 20px;
+  background-color: #d9d9d9;
+  margin-left: 110px;
+  margin-right: 110px;
+  width: 215px;
+}
+
+.input::placeholder {
+  color: #44b26f;
+}
+
+.lable-form {
+  display: flex;
+  align-items: center;
+}
