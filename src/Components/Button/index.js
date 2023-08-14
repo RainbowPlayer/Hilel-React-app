@@ -1,10 +1,10 @@
 import './style.css'
 
-const Button = () => {
+const Button = ({ content, buttonClass }) => {
     return(
         <lable>
-            <button className='login-button'>
-                Login
+            <button className={buttonClass}>
+                {content}
             </button>
         </lable>
     )

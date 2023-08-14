@@ -8,7 +8,7 @@ const Card = (props) => {
             {props.profile}
                 <Input shouldHide={false} />
                 <Input shouldHide={true} />
-                <Button />
+                <Button content="Login" buttonClass='login-button'/>
         </div>
     );
 }
