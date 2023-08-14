@@ -8,7 +8,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 const TableTable = (props) => {
     return(
-        <div className='container-block-table'>
+        <div className='container'>
             <img src={logoWhite} className="rozetka-logo-white" alt="logo-white" />
             <div className='table-block'>
                 <Button content={<div className='content-button-table'><IoPersonOutline /> <span>Add product</span></div>} buttonClass='table-button'/>
