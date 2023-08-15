@@ -1,12 +1,12 @@
-import Button from '../../Components/Button';
-import Table from '../../Components/Table/table';
+import Table from '../../components/Table/table';
+import Button from '../../components/Button';
 import './TableTable.css';
-import logoWhite from '../../Assets/rozetka-logo-white.svg'
+import logoWhite from '../../assets/rozetka-logo-white.svg'
 import { IoPersonOutline } from "react-icons/io5";
 import { AiOutlinePlus } from "react-icons/ai";
 
 
-const TableTable = (props) => {
+const TableTable = () => {
     return(
         <div className='container'>
             <img src={logoWhite} className="rozetka-logo-white" alt="logo-white" />

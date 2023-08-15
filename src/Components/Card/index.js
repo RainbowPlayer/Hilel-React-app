@@ -6,8 +6,8 @@ const Card = (props) => {
     return(
         <div className='card-block'>
             {props.profile}
-                <Input shouldHide={false} />
-                <Input shouldHide={true} />
+                <Input />
+                <Input shouldHide />
                 <Button content="Login" buttonClass='login-button'/>
         </div>
     );

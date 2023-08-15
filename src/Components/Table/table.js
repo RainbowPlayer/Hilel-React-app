@@ -1,8 +1,18 @@
 import './table.css'
 import { BsFillPencilFill } from 'react-icons/bs';
 import { BsArchiveFill } from 'react-icons/bs';
+import React, { useState, useEffect } from 'react';
 
 const Table = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => { 
+        fetch('https://64db692d593f57e435b0ec94.mockapi.io/Products')
+            .then(response => response.json())
+            .then(data => setProducts(data))
+            .catch(error => console.error('Error fetch:', error));
+    }, []);
+
     return(
         <div className='container-table'>
             <span className='table-text'>
@@ -18,30 +28,16 @@ const Table = () => {
                         <th>Price (₴)</th>
                         <th></th>
                     </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>PC</td>
-                        <td>Lenovo Y50-70</td>
-                        <td>5</td>
-                        <td>25,000.00</td>
-                        <td className='icons'><BsFillPencilFill /><BsArchiveFill /></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Clothes</td>
-                        <td>Nike M Nk Df Acd21</td>
-                        <td>22</td>
-                        <td>4,000.00</td>
-                        <td className='icons'><BsFillPencilFill /><BsArchiveFill /></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Plumbing</td>
-                        <td>CERSANIT MITO 17</td>
-                        <td>1337</td>
-                        <td>5,000.00</td>
-                        <td className='icons'><BsFillPencilFill /><BsArchiveFill /></td>
-                    </tr>
+                    {products.map(product => (
+                        <tr key={product.id}>
+                            <td>{product.id}</td>
+                            <td>{product.category}</td>
+                            <td>{product.name}</td>
+                            <td>{product.quantity}</td>
+                            <td>{product.price}</td>
+                            <td className='icons'><BsFillPencilFill /><BsArchiveFill /></td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>

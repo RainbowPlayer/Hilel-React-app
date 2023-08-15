@@ -1,6 +1,6 @@
-import CardPreview from '../../Components/CardPreview/CardPreview';
+import CardPreview from '../../components/CardPreview/CardPreview';
 import './ProductPreview.css';
-import logoWhite from '../../Assets/rozetka-logo-white.svg'
+import logoWhite from '../../assets/rozetka-logo-white.svg'
 
 const ProductPreview = () => {
     return(

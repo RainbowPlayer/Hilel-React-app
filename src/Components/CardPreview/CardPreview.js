@@ -1,5 +1,5 @@
 import './CardPreview.css';
-import lenovo from '../../Assets/Lenovo.png'
+import lenovo from '../../assets/Lenovo.png'
 import { BsCart4 } from 'react-icons/bs'
 
 const CardPreview = () => {
