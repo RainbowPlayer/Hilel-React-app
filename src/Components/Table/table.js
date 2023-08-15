@@ -7,10 +7,17 @@ const Table = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => { 
-        fetch('https://64db692d593f57e435b0ec94.mockapi.io/Products')
-            .then(response => response.json())
-            .then(data => setProducts(data))
-            .catch(error => console.error('Error fetch:', error));
+        const productFetch = async () => {
+            try {
+                const response = await fetch('https://64db692d593f57e435b0ec94.mockapi.io/Products');
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('Error productFetch', error)
+            }
+        };
+
+        productFetch();
     }, []);
 
     return(

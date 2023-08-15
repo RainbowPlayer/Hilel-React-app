@@ -1,21 +1,20 @@
 import './CardPreview.css';
-import lenovo from '../../assets/Lenovo.png'
 import { BsCart4 } from 'react-icons/bs'
 
-const CardPreview = () => {
+const CardPreview = ({ imgSrc, name, price, count, status }) => {
     return(
         <div className='card-preview'>
             <div className='card-content'>
-                <img src={lenovo} className="productImg" alt="Lenovo" />
+                <img src={imgSrc} className="productImg" alt="Lenovo" />
                 <span className='product-text'>
-                    Ноутбук Lenovo Y50-70 Aluminum Black
+                    {name}
                 </span>
                 <div className='price-count'>
                     <span className='price'>
-                        25000
+                        {price}
                     </span>
                     <span className='count'>
-                        Кількість: 5
+                        Кількість: {count}
                     </span>
                 </div>
                 <div className='product-status'>
@@ -23,7 +22,7 @@ const CardPreview = () => {
                         <BsCart4 />
                     </div>
                     <span className='status-text'>
-                        Готовий до відправки
+                        {status}
                     </span>
                 </div>
             </div>
