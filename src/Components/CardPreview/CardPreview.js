@@ -1,12 +1,13 @@
 import './CardPreview.css';
 import { BsCart4 } from 'react-icons/bs'
 
-const CardPreview = ({ imgSrc, name, price, count, status }) => {
+
+const CardPreview = ({ product: {imgSrc, name, price, count, status}, onClick }) => {
     return(
         <div className='card-preview'>
             <div className='card-content'>
-                <img src={imgSrc} className="productImg" alt="Lenovo" />
-                <span className='product-text'>
+                <img src={imgSrc} onClick={onClick} className="productImg" alt="Lenovo" />
+                <span className='product-text' onClick={onClick}>
                     {name}
                 </span>
                 <div className='price-count'>

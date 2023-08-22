@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Login from './container/Login';
 import reportWebVitals from './reportWebVitals';
-import TableTable from './container/TableTable/TableTable';
-import ProductPreview from './container/ProductPreview/ProductPreview';
+import AppRouter from './router';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-  <Login />
-  {/*<TableTable />*/}
-  {/*<ProductPreview />*/}
+  <AppRouter />
   </React.StrictMode>
 );

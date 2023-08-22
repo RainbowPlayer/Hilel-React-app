@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './style.css'
 import Input from '../Input';
 import Button from '../Button';
+import { useNavigate } from "react-router-dom";
 
 const Card = () => {
     const [login, setLogin] = useState('');
@@ -9,7 +10,8 @@ const Card = () => {
     const [isLoginEmpty, setIsLoginEmpty] = useState(false);
     const [isPasswordEmpty, setIsPasswordEmpty] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);   
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         if(event.target.name === 'Login') {
@@ -51,6 +53,7 @@ const Card = () => {
     
             if (response.status === 200) {
                 localStorage.setItem('token', data.token);
+                navigate("/product-table")
             } else {
                 setError(data.message || "An error occurred");
             }

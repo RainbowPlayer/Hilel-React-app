@@ -1,9 +1,13 @@
 import CardPreview from '../../components/CardPreview/CardPreview';
 import './ProductPreview.css';
-import logoWhite from '../../assets/rozetka-logo-white.svg'
-import lenovo from '../../assets/Lenovo.png'
+import logoWhite from '../../assets/rozetka-logo-white.svg';
+import { useNavigate } from "react-router-dom";
+import lenovo from '../../assets/Lenovo.png';
+
 
 const ProductPreview = () => {
+    const navigate = useNavigate();
+
     const products = [
         {
             id: 1,
@@ -15,7 +19,7 @@ const ProductPreview = () => {
             status: 'Готовий до відправки'
         },
         {
-            id: 1,
+            id: 2,
             category: 'PC',
             name: 'Ноутбук Lenovo Y50-70 Aluminum Black',
             imgSrc: lenovo,
@@ -24,7 +28,7 @@ const ProductPreview = () => {
             status: 'Готовий до відправки'
         },
         {
-            id: 1,
+            id: 3,
             category: 'PC',
             name: 'Ноутбук Lenovo Y50-70 Aluminum Black',
             imgSrc: lenovo,
@@ -34,19 +38,16 @@ const ProductPreview = () => {
         },
     ];
 
+    const handleClick = (product) => {
+        navigate(`/product-preview/${product.id}`)
+    }
+
     return(
         <div className='container'>
             <img src={logoWhite} className="rozetka-logo-white" alt="logo-white" />
             <div className='product-container'>
                 {products.map(product => (
-                    <CardPreview
-                        key={product.id} 
-                        imgSrc={product.imgSrc} 
-                        name={product.name}
-                        price={product.price}
-                        count={product.count}
-                        status={product.status}
-                    />
+                    <CardPreview onClick={() => handleClick(product)} key={product.id} product={product} />
                 ))}
             </div>
         </div>
