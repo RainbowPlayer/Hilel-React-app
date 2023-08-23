@@ -1,10 +1,14 @@
 import './SoloProduct.css';
 import { useParams } from 'react-router-dom';
 
-const SoloProduct = (product) => {
+const SoloProduct = () => {
+    let { productId } = useParams();
+
     return(
         <div>
-            {product.id}
+            <span>
+                Hello {productId}
+            </span>
         </div>
     )
 };
