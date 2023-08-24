@@ -1,9 +1,9 @@
-import Login from './container/Login';
-import TableTable from './container/TableTable/TableTable';
-import ProductPreview from './container/ProductPreview/ProductPreview';
+import Login from '../../container/Login';
+import TableTable from '../../container/TableTable/TableTable';
+import ProductPreview from '../../container/ProductPreview/ProductPreview';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './privateRouter';
-import SoloProduct from './container/SoloProduct/SoloProduct';
+import SoloProduct from '../../container/SoloProduct/SoloProduct';
 
 
 
