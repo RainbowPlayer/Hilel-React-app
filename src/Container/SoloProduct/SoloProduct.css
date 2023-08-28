@@ -1,0 +1,117 @@
+.solo-rozetka-block {
+  background-color: #44b26f;
+}
+
+.rozetka-logo-white-solo {
+  margin: 20px 0 20px 20px;
+}
+
+.solo-product-block {
+  background-color: #fff;
+  height: 100vh;
+}
+
+.solo-container {
+  margin-left: 40px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 10px;
+}
+
+.productImg-solo {
+  max-width: 400px;
+}
+
+.solo-product-name {
+  color: #000;
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  align-items: center;
+}
+
+.arrow-solo {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.solo-header-product {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.solo-body-block {
+  display: flex;
+  gap: 75px;
+}
+
+.solo-status-block {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.solo-status-order {
+  color: #3cd78c;
+  text-align: center;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  min-width: 226px;
+}
+
+.solo-price {
+  color: #fc5b00;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.solo-price::after {
+  content: "₴";
+  color: #fc5b00;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.solo-count {
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.solo-disription-name {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.solo-body-descriprion {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.solo-footer-block {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}

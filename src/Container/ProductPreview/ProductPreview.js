@@ -2,41 +2,27 @@ import CardPreview from '../../components/CardPreview/CardPreview';
 import './ProductPreview.css';
 import logoWhite from '../../assets/rozetka-logo-white.svg';
 import { useNavigate } from "react-router-dom";
-import lenovo from '../../assets/Lenovo.png';
+import { useState, useEffect } from 'react';
 
 
 const ProductPreview = () => {
     const navigate = useNavigate();
+    const [products, setProduct] = useState([]);
 
-    const products = [
-        {
-            id: 1,
-            category: 'PC',
-            name: 'Ноутбук Lenovo Y50-70 Aluminum Black',
-            imgSrc: lenovo,
-            price: 25000,
-            count: 5,
-            status: 'Готовий до відправки'
-        },
-        {
-            id: 2,
-            category: 'PC',
-            name: 'Ноутбук Lenovo Y50-70 Aluminum Black',
-            imgSrc: lenovo,
-            price: 25000,
-            count: 5,
-            status: 'Готовий до відправки'
-        },
-        {
-            id: 3,
-            category: 'PC',
-            name: 'Ноутбук Lenovo Y50-70 Aluminum Black',
-            imgSrc: lenovo,
-            price: 25000,
-            count: 5,
-            status: 'Готовий до відправки'
-        },
-    ];
+    useEffect(() => { 
+        const productFetch = async () => {
+            try {
+                const response = await fetch('https://64db692d593f57e435b0ec94.mockapi.io/ProductsPreview');
+                const data = await response.json();
+                setProduct(data);
+            } catch (error) {
+                console.error('Error productFetch', error)
+            }
+        };
+
+        productFetch();
+    }, []);
+
 
     const handleClick = (product) => {
         navigate(`/product-preview/${product.id}`)

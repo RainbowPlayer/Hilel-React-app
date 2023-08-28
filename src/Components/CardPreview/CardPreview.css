@@ -11,6 +11,10 @@
 
 .productImg {
   margin-top: 40px;
+  width: 200px;
+  height: 120px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .product-text {
