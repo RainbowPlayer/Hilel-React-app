@@ -2,21 +2,22 @@ import './table.css'
 import { BsFillPencilFill } from 'react-icons/bs';
 import { BsArchiveFill } from 'react-icons/bs';
 import React, { useState, useEffect } from 'react';
+import { MOCK_API } from '../../constants/mockapi';
 
 const Table = () => {
     const [products, setProducts] = useState([]);
 
-    useEffect(() => { 
-        const productFetch = async () => {
-            try {
-                const response = await fetch('https://64db692d593f57e435b0ec94.mockapi.io/Products');
-                const data = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.error('Error productFetch', error)
-            }
-        };
+    const productFetch = async () => {
+        try {
+            const response = await fetch(`${MOCK_API.productsTable}`);
+            const data = await response.json();
+            setProducts(data);
+        } catch (error) {
+            console.error('Error productFetch', error)
+        }
+    };
 
+    useEffect(() => { 
         productFetch();
     }, []);
 
