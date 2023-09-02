@@ -4,10 +4,9 @@ import { BsArchiveFill } from 'react-icons/bs';
 import React, { useState, useEffect } from 'react';
 import { MOCK_API } from '../../constants/mockapi';
 
-const Table = ({ handleOpenDel }) => {
+const Table = ({ handleOpenDel, setDeleteProductFunc }) => {
     const [products, setProducts] = useState([]);
     
-
     const productFetch = async () => {
         try {
             const response = await fetch(`${MOCK_API.productsTable}`);
@@ -18,8 +17,25 @@ const Table = ({ handleOpenDel }) => {
         }
     };
 
+    const deleteProductFetch = async (productId) => {
+        try {
+          const response = await fetch(`${MOCK_API.productsTable}/${productId}`, {
+            method: 'DELETE',
+          });
+          if (response.status === 200) {
+            console.log('Product deleted successfully');
+            productFetch();
+          } else {
+            console.log('Failed to delete product');
+          }
+        } catch (error) {
+          console.error('Erorr deleteProductFetch', error);
+        }
+    };
+
     useEffect(() => { 
         productFetch();
+        setDeleteProductFunc(() => deleteProductFetch);
     }, []);
 
     return(

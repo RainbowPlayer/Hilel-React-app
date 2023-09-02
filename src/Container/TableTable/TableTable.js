@@ -14,6 +14,7 @@ const TableTable = () => {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState(null);
+    const [deleteProductFunc, setDeleteProductFunc] = useState(null);
 
     const handleOpenDel = (productId) => {
         setSelectedProductId(productId);
@@ -28,15 +29,13 @@ const TableTable = () => {
         navigate(`/product-preview`)
     }
 
-    
-
     return(
         <div className='container'>
-            <PopupDel open={open} handleClose={handleClose} productId={selectedProductId}/>
+            <PopupDel open={open} handleClose={handleClose} productId={selectedProductId} deleteProductFetch={deleteProductFunc}/>
             <img src={logoWhite} className="rozetka-logo-white" alt="logo-white" />
             <div className='table-block'>
                 <Button onClick={previewClick} content={<div className='content-button-table'><IoPersonOutline /> <span>Preview</span></div>} buttonClass='table-button'/>
-                <Table handleOpenDel={handleOpenDel} />
+                <Table handleOpenDel={handleOpenDel} setDeleteProductFunc={setDeleteProductFunc} />
                 <Button content={<div className='content-button-table'><AiOutlinePlus /> <span>Add product</span></div>} buttonClass='table-button'/>
             </div>
         </div>
