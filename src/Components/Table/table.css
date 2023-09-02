@@ -37,6 +37,12 @@ table {
 .icons {
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 10px;
   justify-content: center;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.icons > svg {
+  cursor: pointer;
 }
