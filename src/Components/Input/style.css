@@ -1,15 +1,16 @@
 .eye {
   color: #44b26f;
-  position: fixed;
-  right: 34rem;
+  position: absolute;
+  right: 118px;
   font-size: 1.5em;
+  z-index: 2;
+  cursor: pointer;
 }
 
 .input {
   border: none;
   padding-top: 20px;
   padding-bottom: 20px;
-  position: relative;
   padding-left: 20px;
   background-color: #d9d9d9;
   margin-left: 110px;
@@ -24,4 +25,5 @@
 .lable-form {
   display: flex;
   align-items: center;
+  position: relative;
 }

@@ -1,6 +1,6 @@
 import './style.css'
-import Card from '../../Components/Card'
-import logo from '../../Assets/rozetka-logo.svg'
+import Card from '../../components/Card'
+import logo from '../../assets/rozetka-logo.svg'
 
 const Login = () => {
     return(

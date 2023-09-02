@@ -1,12 +1,7 @@
 .table-block {
   display: flex;
   justify-content: space-between;
-}
-
-.container-block-table {
-  max-width: 1600px;
-  padding-left: 30px;
-  padding-right: 30px;
+  margin-bottom: 100px;
 }
 
 .rozetka-logo-white {
