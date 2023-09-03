@@ -6,23 +6,40 @@ import { IoPersonOutline } from "react-icons/io5";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import PopupDel from '../../components/PopupDel/PopupDel';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { MOCK_API } from '../../constants/mockapi';
 
 
 
 const TableTable = () => {
     const navigate = useNavigate();
-    const [open, setOpen] = useState(false);
+    const [openDel, setOpenDel] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState(null);
-    const [deleteProductFunc, setDeleteProductFunc] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    const deleteProductFetch = async (productId) => {
+        try {
+          const response = await fetch(`${MOCK_API.productsTable}/${productId}`, {
+            method: 'DELETE',
+          });
+          if (response.status === 200) {
+            console.log('Product deleted successfully');
+            setIsLoaded(false);
+          } else {
+            console.log('Failed to delete product');
+          }
+        } catch (error) {
+          console.error('Erorr deleteProductFetch', error);
+        }
+    };
 
     const handleOpenDel = (productId) => {
         setSelectedProductId(productId);
-        setOpen(true);
+        setOpenDel(true);
     };
     
     const handleClose = () => {
-        setOpen(false);
+        setOpenDel(false);
     };
 
     const previewClick = () => {
@@ -31,11 +48,11 @@ const TableTable = () => {
 
     return(
         <div className='container'>
-            <PopupDel open={open} handleClose={handleClose} productId={selectedProductId} deleteProductFetch={deleteProductFunc}/>
+            <PopupDel openDel={openDel} handleClose={handleClose} productId={selectedProductId} deleteProductFetch={deleteProductFetch}/>
             <img src={logoWhite} className="rozetka-logo-white" alt="logo-white" />
             <div className='table-block'>
                 <Button onClick={previewClick} content={<div className='content-button-table'><IoPersonOutline /> <span>Preview</span></div>} buttonClass='table-button'/>
-                <Table handleOpenDel={handleOpenDel} setDeleteProductFunc={setDeleteProductFunc} />
+                <Table handleOpenDel={handleOpenDel} isLoaded={isLoaded} setIsLoaded={setIsLoaded} />
                 <Button content={<div className='content-button-table'><AiOutlinePlus /> <span>Add product</span></div>} buttonClass='table-button'/>
             </div>
         </div>

@@ -18,11 +18,11 @@ const style = {
 
 
 
-export default function PopupDel({ open, handleClose, productId, deleteProductFetch }) {
+export default function PopupDel({ openDel, handleClose, productId, deleteProductFetch }) {
   return (
     <div>
       <Modal
-        open={open}
+        open={openDel}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

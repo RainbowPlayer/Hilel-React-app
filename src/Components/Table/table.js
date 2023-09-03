@@ -4,7 +4,7 @@ import { BsArchiveFill } from 'react-icons/bs';
 import React, { useState, useEffect } from 'react';
 import { MOCK_API } from '../../constants/mockapi';
 
-const Table = ({ handleOpenDel, setDeleteProductFunc }) => {
+const Table = ({ handleOpenDel, isLoaded, setIsLoaded }) => {
     const [products, setProducts] = useState([]);
     
     const productFetch = async () => {
@@ -12,31 +12,18 @@ const Table = ({ handleOpenDel, setDeleteProductFunc }) => {
             const response = await fetch(`${MOCK_API.productsTable}`);
             const data = await response.json();
             setProducts(data);
+            
         } catch (error) {
             console.error('Error productFetch', error)
         }
     };
 
-    const deleteProductFetch = async (productId) => {
-        try {
-          const response = await fetch(`${MOCK_API.productsTable}/${productId}`, {
-            method: 'DELETE',
-          });
-          if (response.status === 200) {
-            console.log('Product deleted successfully');
-            productFetch();
-          } else {
-            console.log('Failed to delete product');
-          }
-        } catch (error) {
-          console.error('Erorr deleteProductFetch', error);
+    useEffect(() => {
+        if(!isLoaded) {
+            productFetch()
+            setIsLoaded(true);
         }
-    };
-
-    useEffect(() => { 
-        productFetch();
-        setDeleteProductFunc(() => deleteProductFetch);
-    }, []);
+    }, [isLoaded]);
 
     return(
         <div className='container-table'>
