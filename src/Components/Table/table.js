@@ -4,7 +4,7 @@ import { BsArchiveFill } from 'react-icons/bs';
 import React, { useState, useEffect } from 'react';
 import { MOCK_API } from '../../constants/mockapi';
 
-const Table = ({ handleOpenDel, isLoaded, setIsLoaded }) => {
+const Table = ({ handleOpenDel, isLoaded, setIsLoaded, handleOpenEdit }) => {
     const [products, setProducts] = useState([]);
     
     const productFetch = async () => {
@@ -48,7 +48,7 @@ const Table = ({ handleOpenDel, isLoaded, setIsLoaded }) => {
                             <td>{product.quantity}</td>
                             <td>{product.price}</td>
                             <td className='icons'>
-                                <BsFillPencilFill />
+                                <BsFillPencilFill onClick={() => handleOpenEdit(product)} />
                                 <BsArchiveFill onClick={() => handleOpenDel(product.id)} />
                             </td>
                         </tr>
