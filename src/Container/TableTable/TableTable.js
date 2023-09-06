@@ -42,6 +42,10 @@ const TableTable = () => {
         setOpenDel(false);
     };
 
+
+const TableTable = () => {
+    const navigate = useNavigate();
+
     const previewClick = () => {
         navigate(`/product-preview`)
     }
@@ -53,6 +57,10 @@ const TableTable = () => {
             <div className='table-block'>
                 <Button onClick={previewClick} content={<div className='content-button-table'><IoPersonOutline /> <span>Preview</span></div>} buttonClass='table-button'/>
                 <Table handleOpenDel={handleOpenDel} isLoaded={isLoaded} setIsLoaded={setIsLoaded} />
+            <img src={logoWhite} className="rozetka-logo-white" alt="logo-white" />
+            <div className='table-block'>
+                <Button onClick={previewClick} content={<div className='content-button-table'><IoPersonOutline /> <span>Preview</span></div>} buttonClass='table-button'/>
+                <Table />
                 <Button content={<div className='content-button-table'><AiOutlinePlus /> <span>Add product</span></div>} buttonClass='table-button'/>
             </div>
         </div>

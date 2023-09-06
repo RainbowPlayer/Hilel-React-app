@@ -25,6 +25,23 @@ const Table = ({ handleOpenDel, isLoaded, setIsLoaded }) => {
         }
     }, [isLoaded]);
 
+const Table = () => {
+    const [products, setProducts] = useState([]);
+
+    const productFetch = async () => {
+        try {
+            const response = await fetch(`${MOCK_API.productsTable}`);
+            const data = await response.json();
+            setProducts(data);
+        } catch (error) {
+            console.error('Error productFetch', error)
+        }
+    };
+
+    useEffect(() => { 
+        productFetch();
+    }, []);
+
     return(
         <div className='container-table'>
             <span className='table-text'>
@@ -51,6 +68,7 @@ const Table = ({ handleOpenDel, isLoaded, setIsLoaded }) => {
                                 <BsFillPencilFill />
                                 <BsArchiveFill onClick={() => handleOpenDel(product.id)} />
                             </td>
+                            <td className='icons'><BsFillPencilFill /><BsArchiveFill /></td>
                         </tr>
                     ))}
                 </tbody>
