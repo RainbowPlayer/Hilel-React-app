@@ -28,6 +28,7 @@ const ProductPreview = () => {
 
     const handleClick = (product) => {
         navigate(`${ROUTING.productPreview}/${product.id}`)
+    };
     }
 
     return(

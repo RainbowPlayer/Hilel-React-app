@@ -4,6 +4,27 @@ import { BsArchiveFill } from 'react-icons/bs';
 import React, { useState, useEffect } from 'react';
 import { MOCK_API } from '../../constants/mockapi';
 
+const Table = ({ handleOpenDel, isLoaded, setIsLoaded }) => {
+    const [products, setProducts] = useState([]);
+    
+    const productFetch = async () => {
+        try {
+            const response = await fetch(`${MOCK_API.productsTable}`);
+            const data = await response.json();
+            setProducts(data);
+            
+        } catch (error) {
+            console.error('Error productFetch', error)
+        }
+    };
+
+    useEffect(() => {
+        if(!isLoaded) {
+            productFetch()
+            setIsLoaded(true);
+        }
+    }, [isLoaded]);
+
 const Table = () => {
     const [products, setProducts] = useState([]);
 
@@ -43,6 +64,10 @@ const Table = () => {
                             <td>{product.name}</td>
                             <td>{product.quantity}</td>
                             <td>{product.price}</td>
+                            <td className='icons'>
+                                <BsFillPencilFill />
+                                <BsArchiveFill onClick={() => handleOpenDel(product.id)} />
+                            </td>
                             <td className='icons'><BsFillPencilFill /><BsArchiveFill /></td>
                         </tr>
                     ))}
