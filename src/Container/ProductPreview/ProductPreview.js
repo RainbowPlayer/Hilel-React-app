@@ -29,7 +29,6 @@ const ProductPreview = () => {
     const handleClick = (product) => {
         navigate(`${ROUTING.productPreview}/${product.id}`)
     };
-    }
 
     return(
         <div className='container'>

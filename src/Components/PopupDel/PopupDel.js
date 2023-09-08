@@ -18,12 +18,13 @@ const style = {
 
 
 
-export default function PopupDel({ openDel, handleClose, productId, deleteProductFetch }) {
+
+export default function PopupDel({ openDel, handleCloseDel, productId, deleteProductFetch }) {
   return (
     <div>
       <Modal
         open={openDel}
-        onClose={handleClose}
+        onClose={handleCloseDel}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -32,8 +33,8 @@ export default function PopupDel({ openDel, handleClose, productId, deleteProduc
             Do you want delete product #{productId} 
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <Button content='Yes' onClick={() => { deleteProductFetch(productId); handleClose(); }}/>
-            <Button content='No' onClick={handleClose}/>
+            <Button content='Yes' onClick={() => { deleteProductFetch(productId); handleCloseDel(); }}/>
+            <Button content='No' onClick={handleCloseDel}/>
           </Typography>
         </Box>
       </Modal>
