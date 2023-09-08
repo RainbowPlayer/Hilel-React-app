@@ -13,7 +13,7 @@ const ProductPreview = () => {
 
     const productFetch = async () => {
         try {
-            const response = await fetch(`${MOCK_API.productsPreview}`);
+            const response = await fetch(`${MOCK_API}`);
             const data = await response.json();
             setProduct(data);
         } catch (error) {

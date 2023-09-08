@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import Button from '../Button';
+import { useState, useEffect } from 'react';
 
 const style = {
   position: 'absolute',
@@ -16,7 +18,22 @@ const style = {
   p: 4,
 };
 
-export default function PopupEdit({ handleCloseEdit, openEdit, product, modalTitle }) {
+export default function PopupEdit({ handleCloseEdit, openEdit, product, modalTitle, addProductFetch, setCategory, setName, setQuantity, setPrice, category, name, quantity, price }) {
+  
+  const [isValid, setIsValid] = useState(false);
+
+  const handleChange = () => {
+    if (!category || !name || !quantity || !price) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  }
+
+  useEffect(() => {
+    handleChange();
+  }, [category, name, quantity, price]);
+
   return (
     <div>
       <Modal
@@ -26,14 +43,16 @@ export default function PopupEdit({ handleCloseEdit, openEdit, product, modalTit
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          <form>
             <Typography id="modal-modal-title" variant="h6" component="h2">
                 {modalTitle}
             </Typography>
-            <TextField id="outlined-basic" label="Category" variant="outlined" defaultValue={product?.category || ""} />
-            <TextField id="outlined-basic" label="Name" variant="outlined" defaultValue={product?.name || ""} />
-            <TextField id="outlined-basic" label="Quantity" variant="outlined" defaultValue={product?.quantity || ""} />
-            <TextField id="outlined-basic" label="Price" variant="outlined" defaultValue={product?.price || ""} />
-            
+            <TextField id="outlined-basic" label="Category" variant="outlined" defaultValue={product?.category || ""} value={category} onChange={(e) => {setCategory(e.target.value); handleChange(); }} />
+            <TextField id="outlined-basic" label="Name" variant="outlined" defaultValue={product?.name || ""} value={name} onChange={(e) => {setName(e.target.value); handleChange(); }} />
+            <TextField id="outlined-basic" label="Quantity" variant="outlined" defaultValue={product?.quantity || ""}  value={quantity} onChange={(e) => {setQuantity(e.target.value); handleChange(); }} />
+            <TextField id="outlined-basic" label="Price" variant="outlined" defaultValue={product?.price || ""} value={price} onChange={(e) => {setPrice(e.target.value); handleChange();}} />
+            <Button content='Submit' onClick={() => {addProductFetch(); handleCloseEdit(); }} disabled={isValid} />
+          </form>
         </Box>
       </Modal>
     </div>

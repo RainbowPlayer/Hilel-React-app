@@ -9,10 +9,10 @@ const Table = ({ handleOpenDel, isLoaded, setIsLoaded, handleOpenEdit }) => {
     
     const productFetch = async () => {
         try {
-            const response = await fetch(`${MOCK_API.productsTable}`);
+            const response = await fetch(`${MOCK_API}`);
             const data = await response.json();
             setProducts(data);
-            
+            setIsLoaded(true);
         } catch (error) {
             console.error('Error productFetch', error)
         }
@@ -21,7 +21,6 @@ const Table = ({ handleOpenDel, isLoaded, setIsLoaded, handleOpenEdit }) => {
     useEffect(() => {
         if(!isLoaded) {
             productFetch()
-            setIsLoaded(true);
         }
     }, [isLoaded]);
 

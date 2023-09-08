@@ -18,33 +18,57 @@ const TableTable = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
-    const [modalTitle, setModalTitle] = useState('');
+    const [modalTitle, setIsModalTitle] = useState('');
+    const [category, setCategory] = useState('');
+    const [name, setName] = useState('');
+    const [quantity, setQuantity] = useState('');
+    const [price, setPrice] = useState('');
 
     const deleteProductFetch = async (productId) => {
-        try {
-          const response = await fetch(`${MOCK_API.productsTable}/${productId}`, {
-            method: 'DELETE',
-          });
-          if (response.status === 200) {
-            console.log('Product deleted successfully');
-            setIsLoaded(false);
-          } else {
-            console.log('Failed to delete product');
-          }
-        } catch (error) {
-          console.error('Erorr deleteProductFetch', error);
+      try {
+        const response = await fetch(`${MOCK_API}/${productId}`, {
+          method: 'DELETE',
+        });
+        if (response.status === 200) {
+          console.log('Product deleted successfully');
+          setIsLoaded(false);
+        } else {
+          console.log('Failed to delete product');
         }
+      } catch (error) {
+        console.error('Erorr deleteProductFetch', error);
+      }
     };
+
+  const addProductFetch = async () => {
+    try {
+      const response = await fetch(`${MOCK_API}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ category, name, quantity, price })
+      });
+      if (response.status === 201) {
+        console.log('Product added successfully');
+        setIsLoaded(false);
+      } else {
+        console.log('Failed to add product');
+      }
+    } catch (error) {
+      console.error('Erorr addProductFetch', error);
+    }
+  };
 
     const handleAddProduct = () => {
       setSelectedProduct(null);
-      setModalTitle('Add product');
+      setIsModalTitle('Add product');
       setOpenEdit(true);
     };
 
     const handleOpenEdit = (product) => {
       setSelectedProduct(product);
-      setModalTitle('Edit product');
+      setIsModalTitle('Edit product');
       setOpenEdit(true);
     };
 
@@ -68,7 +92,21 @@ const TableTable = () => {
 
     return(
         <div className='container'>
-            <PopupEdit handleCloseEdit={handleCloseEdit} openEdit={openEdit} product={selectedProduct} modalTitle={modalTitle} />
+            <PopupEdit 
+            handleCloseEdit={handleCloseEdit} 
+            openEdit={openEdit} 
+            product={selectedProduct} 
+            modalTitle={modalTitle} 
+            addProductFetch={addProductFetch} 
+            setCategory={setCategory}
+            category={category}
+            setName={setName}
+            name={name}
+            setQuantity={setQuantity} 
+            quantity={quantity}
+            setPrice={setPrice}
+            price={price}
+            />
             <PopupDel openDel={openDel} handleCloseDel={handleCloseDel} productId={selectedProductId} deleteProductFetch={deleteProductFetch}/>
             <img src={logoWhite} className="rozetka-logo-white" alt="logo-white" />
             <div className='table-block'>
