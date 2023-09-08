@@ -18,6 +18,7 @@ const style = {
 
 
 
+
 export default function PopupDel({ openDel, handleCloseDel, productId, deleteProductFetch }) {
   return (
     <div>

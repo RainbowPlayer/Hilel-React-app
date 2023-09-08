@@ -10,7 +10,6 @@ import React, { useState } from 'react';
 import { MOCK_API } from '../../constants/mockapi';
 import PopupEdit from '../../components/PopupEdit/popupEdit';
 
-
 const TableTable = () => {
     const navigate = useNavigate();
     const [openDel, setOpenDel] = useState(false);
@@ -52,16 +51,15 @@ const TableTable = () => {
       setSelectedProduct(null);
       setOpenEdit(false);
     };
-
     const handleOpenDel = (productId) => {
         setSelectedProductId(productId);
         setOpenDel(true);
     };
     
+
     const handleCloseDel = () => {
         setOpenDel(false);
     };
-
     const previewClick = () => {
         navigate(`/product-preview`)
     }

@@ -4,6 +4,7 @@ import { BsArchiveFill } from 'react-icons/bs';
 import React, { useState, useEffect } from 'react';
 import { MOCK_API } from '../../constants/mockapi';
 
+
 const Table = ({ handleOpenDel, isLoaded, setIsLoaded, handleOpenEdit }) => {
     const [products, setProducts] = useState([]);
     
@@ -24,7 +25,7 @@ const Table = ({ handleOpenDel, isLoaded, setIsLoaded, handleOpenEdit }) => {
             setIsLoaded(true);
         }
     }, [isLoaded]);
-
+  
     return(
         <div className='container-table'>
             <span className='table-text'>
@@ -51,6 +52,7 @@ const Table = ({ handleOpenDel, isLoaded, setIsLoaded, handleOpenEdit }) => {
                                 <BsFillPencilFill onClick={() => handleOpenEdit(product)} />
                                 <BsArchiveFill onClick={() => handleOpenDel(product.id)} />
                             </td>
+
                         </tr>
                     ))}
                 </tbody>
