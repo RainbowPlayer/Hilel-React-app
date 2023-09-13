@@ -12,33 +12,33 @@ import PopupEdit from '../../components/PopupEdit/popupEdit';
 
 
 const TableTable = () => {
-    const navigate = useNavigate();
-    const [openDel, setOpenDel] = useState(false);
-    const [selectedProductId, setSelectedProductId] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [openEdit, setOpenEdit] = useState(false);
-    const [selectedProduct, setSelectedProduct] = useState(null);
-    const [modalTitle, setIsModalTitle] = useState('');
-    const [category, setCategory] = useState('');
-    const [name, setName] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [price, setPrice] = useState('');
+  const navigate = useNavigate();
+  const [openDel, setOpenDel] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [modalTitle, setIsModalTitle] = useState('');
+  const [category, setCategory] = useState('');
+  const [name, setName] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [price, setPrice] = useState('');
 
-    const deleteProductFetch = async (productId) => {
-      try {
-        const response = await fetch(`${MOCK_API}/${productId}`, {
-          method: 'DELETE',
-        });
-        if (response.status === 200) {
-          console.log('Product deleted successfully');
-          setIsLoaded(false);
-        } else {
-          console.log('Failed to delete product');
-        }
-      } catch (error) {
-        console.error('Erorr deleteProductFetch', error);
+  const deleteProductFetch = async (productId) => {
+    try {
+      const response = await fetch(`${MOCK_API}/${productId}`, {
+        method: 'DELETE',
+      });
+      if (response.status === 200) {
+        console.log('Product deleted successfully');
+        setIsLoaded(false);
+      } else {
+        console.log('Failed to delete product');
       }
-    };
+    } catch (error) {
+      console.error('Erorr deleteProductFetch', error);
+    }
+  };
 
   const addProductFetch = async () => {
     try {
@@ -60,35 +60,55 @@ const TableTable = () => {
     }
   };
 
-    const handleAddProduct = () => {
-      setSelectedProduct(null);
-      setIsModalTitle('Add product');
-      setOpenEdit(true);
-    };
-
-    const handleOpenEdit = (product) => {
-      setSelectedProduct(product);
-      setIsModalTitle('Edit product');
-      setOpenEdit(true);
-    };
-
-    const handleCloseEdit = () => {
-      setSelectedProduct(null);
-      setOpenEdit(false);
-    };
-
-    const handleOpenDel = (productId) => {
-        setSelectedProductId(productId);
-        setOpenDel(true);
-    };
-    
-    const handleCloseDel = () => {
-        setOpenDel(false);
-    };
-
-    const previewClick = () => {
-        navigate(`/product-preview`)
+  const editProductFetch = async () => {
+    try {
+      const response = await fetch(`${MOCK_API}/${selectedProduct.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ category, name, quantity, price })
+      });
+      if (response.status === 200) {
+        console.log('Product edited successfully');
+        setIsLoaded(false);
+      } else {
+        console.log('Failed to edit product');
+      }
+    } catch (error) {
+      console.error('Error editProductFetch', error);
     }
+  };
+
+  const handleAddProduct = () => {
+    setSelectedProduct(null);
+    setIsModalTitle('Add product');
+    setOpenEdit(true);
+  };
+
+  const handleOpenEdit = (product) => {
+    setSelectedProduct(product);
+    setIsModalTitle('Edit product');
+    setOpenEdit(true);
+  };
+
+  const handleCloseEdit = () => {
+    setSelectedProduct(null);
+    setOpenEdit(false);
+  };
+
+  const handleOpenDel = (productId) => {
+    setSelectedProductId(productId);
+    setOpenDel(true);
+  };
+    
+  const handleCloseDel = () => {
+    setOpenDel(false);
+  };
+
+  const previewClick = () => {
+    navigate(`/product-preview`)
+  };
 
     return(
         <div className='container'>
@@ -106,6 +126,7 @@ const TableTable = () => {
             quantity={quantity}
             setPrice={setPrice}
             price={price}
+            editProductFetch={editProductFetch}
             />
             <PopupDel openDel={openDel} handleCloseDel={handleCloseDel} productId={selectedProductId} deleteProductFetch={deleteProductFetch}/>
             <img src={logoWhite} className="rozetka-logo-white" alt="logo-white" />

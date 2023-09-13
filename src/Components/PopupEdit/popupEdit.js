@@ -18,7 +18,7 @@ const style = {
   p: 4,
 };
 
-export default function PopupEdit({ handleCloseEdit, openEdit, product, modalTitle, addProductFetch, setCategory, setName, setQuantity, setPrice, category, name, quantity, price }) {
+export default function PopupEdit({ handleCloseEdit, openEdit, product, modalTitle, addProductFetch, setCategory, setName, setQuantity, setPrice, category, name, quantity, price, editProductFetch }) {
   
   const [isValid, setIsValid] = useState(false);
 
@@ -33,6 +33,15 @@ export default function PopupEdit({ handleCloseEdit, openEdit, product, modalTit
   useEffect(() => {
     handleChange();
   }, [category, name, quantity, price]);
+
+  useEffect(() => {
+    if (product) {
+        setCategory(product.category);
+        setName(product.name);
+        setQuantity(product.quantity);
+        setPrice(product.price);
+    }
+  }, [product]);
 
   return (
     <div>
@@ -51,7 +60,7 @@ export default function PopupEdit({ handleCloseEdit, openEdit, product, modalTit
             <TextField id="outlined-basic" label="Name" variant="outlined" defaultValue={product?.name || ""} value={name} onChange={(e) => {setName(e.target.value); handleChange(); }} />
             <TextField id="outlined-basic" label="Quantity" variant="outlined" defaultValue={product?.quantity || ""}  value={quantity} onChange={(e) => {setQuantity(e.target.value); handleChange(); }} />
             <TextField id="outlined-basic" label="Price" variant="outlined" defaultValue={product?.price || ""} value={price} onChange={(e) => {setPrice(e.target.value); handleChange();}} />
-            <Button content='Submit' onClick={() => {addProductFetch(); handleCloseEdit(); }} disabled={isValid} />
+            <Button content='Submit' onClick={() => { product ? editProductFetch() : addProductFetch(); handleCloseEdit(); }} disabled={isValid} />
           </form>
         </Box>
       </Modal>
